@@ -1,5 +1,8 @@
 package com.thelma;
 
+import com.thelma.model.Bowling;
+import com.thelma.model.Turn;
+
 import java.util.ArrayList;
 import java.util.List;
 

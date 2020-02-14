@@ -1,11 +1,11 @@
-package com.thelma;
+package com.thelma.model;
 
 class Frame {
-    protected Character[] balls;
-    protected int score;
-    protected int fwdBallsToScore;
-    protected int currentIdx;
-    protected int frameVal;
+    Character[] balls;
+    int score;
+    int fwdBallsToScore;
+    int currentIdx;
+    private int frameVal;
 
     Frame(){
         balls = new Character[2];
@@ -18,7 +18,7 @@ class Frame {
         return 10;
     }
 
-    public int getFrameVal(){
+    int getFrameVal(){
         return frameVal;
     }
 

@@ -1,4 +1,4 @@
-package com.thelma;
+package com.thelma.model;
 
 public class Turn {
     private String name;
@@ -9,7 +9,7 @@ public class Turn {
         this.pitfalls = pitfalls;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
@@ -17,7 +17,7 @@ public class Turn {
         this.name = name;
     }
 
-    public char getPitfalls() {
+    char getPitfalls() {
         return pitfalls;
     }
 

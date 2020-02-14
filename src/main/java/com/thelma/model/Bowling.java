@@ -1,4 +1,4 @@
-package com.thelma;
+package com.thelma.model;
 
 import java.util.HashMap;
 import java.util.Map;

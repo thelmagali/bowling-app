@@ -1,4 +1,4 @@
-package com.thelma;
+package com.thelma.model;
 
 class LastFrame extends Frame {
 
