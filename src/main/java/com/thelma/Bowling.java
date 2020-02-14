@@ -19,11 +19,4 @@ public class Bowling {
         }
         game.saveBall(turn.getPitfalls());
     }
-
-    static int getVal(char pitfalls){
-        if(pitfalls == 'F') return 0;
-        if(pitfalls == ' ') return 0;
-        if(pitfalls == 'X') return 10;
-        return Character.getNumericValue(pitfalls);
-    }
 }

@@ -1,5 +1,4 @@
 package com.thelma;
-import static com.thelma.Bowling.*;
 
 class Frame {
     protected Character[] balls;
@@ -62,5 +61,12 @@ class Frame {
 
     int getScore(){
         return score;
+    }
+
+    private int getVal(char pitfalls){
+        if(pitfalls == 'F') return 0;
+        if(pitfalls == ' ') return 0;
+        if(pitfalls == 'X') return 10;
+        return Character.getNumericValue(pitfalls);
     }
 }
