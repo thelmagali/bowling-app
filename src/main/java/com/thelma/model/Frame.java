@@ -22,7 +22,7 @@ class Frame {
         return frameVal;
     }
 
-    void saveBall(char pitfall) throws Exception {
+    final void saveBall(char pitfall) throws Exception {
         currentIdx++;
         frameVal += getVal(pitfall);
         if(currentIdx == 0){
