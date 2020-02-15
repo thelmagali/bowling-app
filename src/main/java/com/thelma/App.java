@@ -8,6 +8,9 @@ public class App
 {
     public static void main(String[] args) {
         try {
+            if(args.length != 1){
+                throw new Exception("1 argument is necessary. The name of the input file.");
+            }
             GameFileReader reader = new GameFileReader(args[0]);
             Bowling bowling = new Bowling();
             while(true){

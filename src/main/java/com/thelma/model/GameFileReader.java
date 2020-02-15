@@ -2,13 +2,19 @@ package com.thelma.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class GameFileReader {
     private Scanner scanner;
 
     public GameFileReader(String filename) throws FileNotFoundException {
-        scanner = new Scanner(new File(filename));
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename);
+        if(inputStream != null){
+            scanner = new Scanner(inputStream);
+        } else {
+            scanner = new Scanner(new File(filename));
+        }
     }
 
     public Chance readLine() throws Exception {
