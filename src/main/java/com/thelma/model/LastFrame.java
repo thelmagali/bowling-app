@@ -32,4 +32,10 @@ class LastFrame extends Frame {
 
     @Override
     void handleStrike(){ }
+
+    @Override
+    char formatIfSpare(){
+        if(getPreviousVal() != 10) return '/';
+        return 'X';
+    }
 }

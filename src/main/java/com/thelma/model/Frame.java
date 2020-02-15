@@ -27,6 +27,10 @@ class Frame {
         currentIdx++;
     }
 
+    char formatIfSpare(){
+        return '/';
+    }
+
     int saveBall(char pitfall) throws Exception {
         currentIdx++;
         char formattedPitfall = pitfall;
@@ -40,7 +44,7 @@ class Frame {
         } else{
             int maxPins = getMaxPins();
             if(val == maxPins){
-                formattedPitfall = '/';
+                formattedPitfall = formatIfSpare();
                 ballsToScore = 1;
             } else if (val > maxPins){
                 throw new Exception("Invalid second throw");
