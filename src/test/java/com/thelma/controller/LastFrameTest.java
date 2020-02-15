@@ -17,9 +17,9 @@ class LastFrameTest extends RegularFrameTest{
     void testFrame5() throws Exception {
         Frame frame = getFrameInstance();
         frame.saveBall('X');
-        Assertions.assertEquals(frame.getFrameVal(), 10);
+        Assertions.assertEquals(10, frame.getFrameVal());
         Assertions.assertEquals("X", frame.getBallsString());
-        Assertions.assertEquals(frame.getBallsToScore(), 2);
+        Assertions.assertEquals(2, frame.getBallsToScore());
     }
 
     @Override
