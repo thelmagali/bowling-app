@@ -14,31 +14,35 @@ class Frame {
         currentIdx = -1;
     }
 
-    protected int getMaxPins(){
-        return 10;
+    int getMaxPins(){
+        return 10 - getPreviousVal();
     }
 
     int getFrameVal(){
         return frameVal;
     }
 
-    final int saveBall(char pitfall) throws Exception {
+    void handleStrike(){
+        balls[0] = ' ';
+        currentIdx++;
+    }
+
+    int saveBall(char pitfall) throws Exception {
         currentIdx++;
         char formattedPitfall = pitfall;
         int val = getVal(pitfall);
         frameVal += val;
         if(currentIdx == 0){
             if(pitfall == 'X'){
-                balls[0] = ' ';
+                handleStrike();
                 ballsToScore = 2;
-                currentIdx++;
             }
         } else{
             int maxPins = getMaxPins();
-            if(frameVal == maxPins){
+            if(val == maxPins){
                 formattedPitfall = '/';
                 ballsToScore = 1;
-            } else if (frameVal > maxPins){
+            } else if (val > maxPins){
                 throw new Exception("Invalid second throw");
             }
         }

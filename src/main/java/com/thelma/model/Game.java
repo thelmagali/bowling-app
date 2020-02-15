@@ -25,6 +25,11 @@ class Game {
     }
 
     private int getBallsToScoreNextFrame(){
+        if (nextFrameToScoreIdx == 10){
+            complete = true;
+            nextFrameToScoreIdx = 9;
+            return 0;
+        }
         return frames[nextFrameToScoreIdx].getBallsToScore();
     }
 
@@ -40,7 +45,7 @@ class Game {
         }
         currentScore += frame.saveBall(pitfall);
         if(getBallsToScoreNextFrame() > 0){
-            if (ballsNotScored == getBallsToScoreNextFrame()) {
+            if (ballsNotScored >= getBallsToScoreNextFrame()) {
                 calculateScores();
             } else {
                 ballsNotScored++;

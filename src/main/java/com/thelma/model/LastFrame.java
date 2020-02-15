@@ -18,8 +18,8 @@ class LastFrame extends Frame {
     }
 
     @Override
-    protected int getMaxPins(){
-        return (getPreviousVal() < 10) ? 10 : 20;
+    int getMaxPins(){
+        return (getPreviousVal() == 10) ? 10 : 10 - getPreviousVal();
     }
 
     @Override
@@ -29,4 +29,7 @@ class LastFrame extends Frame {
         if(balls[2] != null) sb.append(balls[2]);
         return sb.toString();
     }
+
+    @Override
+    void handleStrike(){ }
 }
