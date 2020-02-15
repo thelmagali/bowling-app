@@ -13,15 +13,8 @@ public class Chance {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     char getPitfalls() {
         return pitfalls;
     }
 
-    public void setPitfalls(char pitfalls) {
-        this.pitfalls = pitfalls;
-    }
 }

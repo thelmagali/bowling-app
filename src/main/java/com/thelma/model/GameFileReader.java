@@ -16,14 +16,16 @@ public class GameFileReader {
             if(scanner.hasNextLine()){
                 return parseLine(scanner.nextLine());
             }
-            return null;
-        } finally{
             scanner.close();
+            return null;
+        } catch (Exception e){
+            scanner.close();
+            throw e;
         }
     }
 
     private Chance parseLine(String line) throws Exception {
-        String[] inputArray = line.split("\\t");
+        String[] inputArray = line.split("\t");
         if(inputArray.length != 2) throw new Exception("Line must have 2 elements");
         String name = inputArray[0];
         String pitfalls = inputArray[1];
