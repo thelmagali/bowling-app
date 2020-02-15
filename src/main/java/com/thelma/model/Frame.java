@@ -22,9 +22,11 @@ class Frame {
         return frameVal;
     }
 
-    final void saveBall(char pitfall) throws Exception {
+    final int saveBall(char pitfall) throws Exception {
         currentIdx++;
-        frameVal += getVal(pitfall);
+        char formattedPitfall = pitfall;
+        int val = getVal(pitfall);
+        frameVal += val;
         if(currentIdx == 0){
             if(pitfall == 'X'){
                 balls[0] = ' ';
@@ -34,13 +36,14 @@ class Frame {
         } else{
             int maxPins = getMaxPins();
             if(frameVal == maxPins){
-                pitfall = '/';
+                formattedPitfall = '/';
                 fwdBallsToScore = 1;
             } else if (frameVal > maxPins){
                 throw new Exception("Invalid second throw");
             }
         }
-        balls[currentIdx] = pitfall;
+        balls[currentIdx] = formattedPitfall;
+        return val;
     }
 
     int getFwdBallsToScore(){

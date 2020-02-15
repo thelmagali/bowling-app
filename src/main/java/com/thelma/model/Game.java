@@ -34,8 +34,7 @@ public class Game {
             }
             frames[currentFrameIdx] = frame;
         }
-        frame.saveBall(pitfall);
-        currentScore += frame.getFrameVal();
+        currentScore += frame.saveBall(pitfall);
         if(frames[nextFrameToScoreIdx].getFwdBallsToScore() > 0){
             if (ballsNotScored == frames[nextFrameToScoreIdx].getFwdBallsToScore()) {
                 lastSavedScore += currentScore;
@@ -56,6 +55,7 @@ public class Game {
                 currentScore -= frames[nextFrameToScoreIdx].getFrameVal();
                 frames[nextFrameToScoreIdx].score(lastSavedScore);
                 nextFrameToScoreIdx++;
+                ballsNotScored = 0;
             }
         }
     }
