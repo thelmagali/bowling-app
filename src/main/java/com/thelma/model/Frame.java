@@ -23,7 +23,7 @@ class Frame {
     }
 
     void handleStrike(){
-        balls[0] = ' ';
+        balls[0] = '\0';
         currentIdx++;
     }
 
@@ -76,15 +76,12 @@ class Frame {
 
     private int getVal(char pitfalls){
         if(pitfalls == 'F') return 0;
-        if(pitfalls == ' ') return 0;
+        if(pitfalls == '\0') return 0;
         if(pitfalls == 'X') return 10;
         return Character.getNumericValue(pitfalls);
     }
 
     String getBallsString(){
-        StringBuilder sb = new StringBuilder();
-        if(balls[0] != ' ') sb.append(balls[0]);
-        sb.append("\t").append(balls[1]);
-        return sb.toString();
+        return balls[0] + "\t" + balls[1];
     }
 }
