@@ -1,7 +1,7 @@
 package com.thelma.model;
 
 
-public class Game {
+class Game {
     private Frame[] frames; //array of 10 frames
     private int currentFrameIdx; //index of the frame we are populating
     private int lastSavedScore;
@@ -20,7 +20,7 @@ public class Game {
         lastSavedScore = 0;
     }
 
-    public boolean isComplete(){
+    boolean isComplete(){
         return complete;
     }
 
@@ -61,5 +61,18 @@ public class Game {
         frames[nextFrameToScoreIdx].score(lastSavedScore);
         currentScore -= frames[nextFrameToScoreIdx].getFrameVal();
         nextFrameToScoreIdx++;
+    }
+
+    void print() {
+        StringBuilder ballsBuilder = new StringBuilder("Pinfalls\t");
+        StringBuilder scoreBuilder = new StringBuilder("Score\t\t");
+        for(Frame frame: frames){
+            ballsBuilder.append(frame.getBallsString()).append("\t");
+            scoreBuilder.append(frame.getScore()).append("\t\t");
+        }
+        ballsBuilder.deleteCharAt(ballsBuilder.length() - 1);
+        scoreBuilder.substring(0, scoreBuilder.length() - 2);
+        System.out.println(ballsBuilder.toString());
+        System.out.println(scoreBuilder.toString());
     }
 }

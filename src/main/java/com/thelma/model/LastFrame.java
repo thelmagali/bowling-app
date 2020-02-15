@@ -21,4 +21,12 @@ class LastFrame extends Frame {
     protected int getMaxPins(){
         return (getPreviousVal() < 10) ? 10 : 20;
     }
+
+    @Override
+    String getBallsString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(balls[0]).append("\t").append(balls[1]).append("\t");
+        if(balls[2] != null) sb.append(balls[2]);
+        return sb.toString();
+    }
 }

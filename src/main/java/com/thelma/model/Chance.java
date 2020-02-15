@@ -1,10 +1,10 @@
 package com.thelma.model;
 
-public class Turn {
+public class Chance {
     private String name;
     private char pitfalls;
 
-    public Turn(String name, char pitfalls){
+    Chance(String name, char pitfalls){
         this.name = name;
         this.pitfalls = pitfalls;
     }

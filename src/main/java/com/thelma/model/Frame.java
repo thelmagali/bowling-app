@@ -72,4 +72,11 @@ class Frame {
         if(pitfalls == 'X') return 10;
         return Character.getNumericValue(pitfalls);
     }
+
+    String getBallsString(){
+        StringBuilder sb = new StringBuilder();
+        if(balls[0] != ' ') sb.append(balls[0]);
+        sb.append("\t").append(balls[1]);
+        return sb.toString();
+    }
 }
