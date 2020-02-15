@@ -23,9 +23,11 @@ public abstract class Frame {
         return frameVal;
     }
 
-    protected void handleStrike(){}
+    protected void handleStrike(){
+        ballsToScore = 2;
+    }
 
-    protected abstract char formatIfSpare();
+    protected abstract char handleSpare();
 
     int saveBall(char pitfall) throws Exception {
         currentIdx++;
@@ -35,13 +37,11 @@ public abstract class Frame {
         if(currentIdx == 0){
             if(pitfall == 'X'){
                 handleStrike();
-                ballsToScore = 2;
             }
         } else{
             int maxPins = getMaxPins();
             if(val == maxPins){
-                formattedPitfall = formatIfSpare();
-                ballsToScore = 1;
+                formattedPitfall = handleSpare();
             } else if (val > maxPins){
                 throw new Exception("Invalid second throw");
             }
@@ -75,5 +75,11 @@ public abstract class Frame {
         return Character.getNumericValue(pitfalls);
     }
 
-    public abstract String getBallsString();
+    String getBallsString(){
+        StringBuilder sb = new StringBuilder();
+        for(Character ball: balls){
+            if(ball != null) sb.append(ball).append("\t");
+        }
+        return sb.substring(0, sb.length() - 1);
+    }
 }

@@ -16,12 +16,14 @@ public class RegularFrame extends Frame {
 
     @Override
     protected void handleStrike(){
+        super.handleStrike();
         balls[0] = '\0';
         currentIdx++;
     }
 
     @Override
-    protected char formatIfSpare(){
+    protected char handleSpare(){
+        ballsToScore = 1;
         return '/';
     }
 
@@ -30,8 +32,4 @@ public class RegularFrame extends Frame {
         return currentIdx == 1;
     }
 
-    @Override
-    public String getBallsString(){
-        return balls[0] + "\t" + balls[1];
-    }
 }

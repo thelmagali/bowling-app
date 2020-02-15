@@ -20,16 +20,12 @@ public class LastFrame extends Frame {
     }
 
     @Override
-    public String getBallsString(){
-        StringBuilder sb = new StringBuilder();
-        sb.append(balls[0]).append("\t").append(balls[1]).append("\t");
-        if(balls[2] != null) sb.append(balls[2]);
-        return sb.toString();
-    }
-
-    @Override
-    protected char formatIfSpare(){
-        if(getPreviousVal() != 10) return '/';
+    protected char handleSpare(){
+        if(getPreviousVal() != 10){
+            ballsToScore = 1;
+            return '/';
+        }
+        ballsToScore = 2;
         return 'X';
     }
 }

@@ -7,63 +7,67 @@ import org.junit.jupiter.api.Test;
 
 class RegularFrameTest {
 
+    Frame getFrameInstance(){
+        return new RegularFrame();
+    }
+
     @Test
     @DisplayName("Save chances with 5 and 4 pitfalls. Check sum and string repr")
-    void testRegFrame1() throws Exception {
-        Frame regularFrame = new RegularFrame();
+    void testFrame1() throws Exception {
+        Frame regularFrame = getFrameInstance();
         regularFrame.saveBall('5');
         regularFrame.saveBall('4');
-        Assertions.assertEquals(regularFrame.getFrameVal(), 9);
+        Assertions.assertEquals(9, regularFrame.getFrameVal());
         Assertions.assertEquals("5\t4", regularFrame.getBallsString());
     }
 
     @Test
     @DisplayName("Save chances with 2 and 8 pitfalls. Check if spare was processed correctly")
-    void testRegFrame2() throws Exception {
-        Frame regularFrame = new RegularFrame();
+    void testFrame2() throws Exception {
+        Frame regularFrame = getFrameInstance();
         regularFrame.saveBall('2');
         regularFrame.saveBall('8');
-        Assertions.assertEquals(regularFrame.getFrameVal(), 10);
+        Assertions.assertEquals(10, regularFrame.getFrameVal());
         Assertions.assertEquals("2\t/", regularFrame.getBallsString());
-        Assertions.assertEquals(regularFrame.getBallsToScore(), 1);
+        Assertions.assertEquals(1, regularFrame.getBallsToScore());
     }
 
     @Test
     @DisplayName("Save chances with 0 and 10 pitfalls. Check if spare was processed correctly")
-    void testRegFrame3() throws Exception {
-        Frame regularFrame = new RegularFrame();
+    void testFrame3() throws Exception {
+        Frame regularFrame = getFrameInstance();
         regularFrame.saveBall('0');
         regularFrame.saveBall('X');
-        Assertions.assertEquals(regularFrame.getFrameVal(), 10);
+        Assertions.assertEquals(10, regularFrame.getFrameVal());
         Assertions.assertEquals("0\t/", regularFrame.getBallsString());
-        Assertions.assertEquals(regularFrame.getBallsToScore(), 1);
+        Assertions.assertEquals(1, regularFrame.getBallsToScore());
     }
 
     @Test
     @DisplayName("Save chances with F and 10 pitfalls. Check if spare was processed correctly")
-    void testRegFrame4() throws Exception {
-        Frame regularFrame = new RegularFrame();
+    void testFrame4() throws Exception {
+        Frame regularFrame = getFrameInstance();
         regularFrame.saveBall('F');
         regularFrame.saveBall('X');
-        Assertions.assertEquals(regularFrame.getFrameVal(), 10);
+        Assertions.assertEquals(10, regularFrame.getFrameVal());
         Assertions.assertEquals("F\t/", regularFrame.getBallsString());
-        Assertions.assertEquals(regularFrame.getBallsToScore(), 1);
+        Assertions.assertEquals(1, regularFrame.getBallsToScore());
     }
 
     @Test
     @DisplayName("Save chance with 10 pitfalls. Check if strike was processed correctly")
-    void testRegFrame5() throws Exception {
-        Frame regularFrame = new RegularFrame();
+    void testFrame5() throws Exception {
+        Frame regularFrame = getFrameInstance();
         regularFrame.saveBall('X');
-        Assertions.assertEquals(regularFrame.getFrameVal(), 10);
+        Assertions.assertEquals(10, regularFrame.getFrameVal());
         Assertions.assertEquals("\0\tX", regularFrame.getBallsString());
-        Assertions.assertEquals(regularFrame.getBallsToScore(), 2);
+        Assertions.assertEquals(2, regularFrame.getBallsToScore());
     }
 
     @Test
     @DisplayName("Save chance with 4 and 7 pitfalls. An exception should be thrown")
-    void testRegFrame6() {
-        Frame regularFrame = new RegularFrame();
+    void testFrame6() {
+        Frame regularFrame = getFrameInstance();
         Exception thrown = Assertions.assertThrows(Exception.class, () -> {
             regularFrame.saveBall('4');
             regularFrame.saveBall('7');
@@ -73,8 +77,8 @@ class RegularFrameTest {
 
     @Test
     @DisplayName("Save chance with 10 and 10 pitfalls. An exception should be thrown")
-    void testRegFrame7() {
-        Frame regularFrame = new RegularFrame();
+    void testFrame7() {
+        Frame regularFrame = getFrameInstance();
         Exception thrown = Assertions.assertThrows(Exception.class, () -> {
                 regularFrame.saveBall('X');
                 regularFrame.saveBall('X');
