@@ -4,16 +4,16 @@ public class Chance {
     private String name;
     private char pitfalls;
 
-    Chance(String name, char pitfalls){
+    public Chance(String name, char pitfalls){
         this.name = name;
         this.pitfalls = pitfalls;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
-    char getPitfalls() {
+    public char getPitfalls() {
         return pitfalls;
     }
 

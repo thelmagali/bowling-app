@@ -1,26 +1,26 @@
-package com.thelma.model;
+package com.thelma.controller.impl;
 
-class LastFrame extends Frame {
+import com.thelma.controller.Frame;
 
-    LastFrame(){
-        balls = new Character[3];
-        score = 0;
-        ballsToScore = 0;
-        currentIdx = -1;
+public class LastFrame extends Frame {
+
+    @Override
+    protected int getNumberOfChances() {
+        return 3;
     }
 
     @Override
-    boolean isComplete() {
+    public boolean isComplete() {
         return (ballsToScore == 0) ? (currentIdx == 1) : (currentIdx == 2);
     }
 
     @Override
-    int getMaxPins(){
+    protected int getMaxPins(){
         return (getPreviousVal() == 10) ? 10 : 10 - getPreviousVal();
     }
 
     @Override
-    String getBallsString(){
+    public String getBallsString(){
         StringBuilder sb = new StringBuilder();
         sb.append(balls[0]).append("\t").append(balls[1]).append("\t");
         if(balls[2] != null) sb.append(balls[2]);
@@ -28,10 +28,7 @@ class LastFrame extends Frame {
     }
 
     @Override
-    void handleStrike(){ }
-
-    @Override
-    char formatIfSpare(){
+    protected char formatIfSpare(){
         if(getPreviousVal() != 10) return '/';
         return 'X';
     }

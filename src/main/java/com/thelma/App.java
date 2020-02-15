@@ -1,8 +1,9 @@
 package com.thelma;
 
-import com.thelma.model.Bowling;
-import com.thelma.model.Chance;
-import com.thelma.model.GameFileReader;
+import com.thelma.controller.Bowling;
+import com.thelma.controller.GameInputReader;
+import com.thelma.controller.impl.BowlingMemImpl;
+import com.thelma.controller.impl.GameInputReaderFile;
 
 public class App 
 {
@@ -11,15 +12,9 @@ public class App
             if(args.length != 1){
                 throw new Exception("1 argument is necessary. The name of the input file.");
             }
-            GameFileReader reader = new GameFileReader(args[0]);
-            Bowling bowling = new Bowling();
-            while(true){
-                Chance chance = reader.readLine();
-                if(chance == null){
-                    break;
-                }
-                bowling.playChance(chance);
-            }
+            GameInputReader reader = new GameInputReaderFile(args[0]);
+            Bowling bowling = new BowlingMemImpl(reader);
+            bowling.play();
             bowling.printResult();
         } catch (Exception e) {
             e.printStackTrace();

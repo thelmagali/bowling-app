@@ -1,7 +1,9 @@
-package com.thelma.model;
+package com.thelma.controller;
 
+import com.thelma.controller.impl.LastFrame;
+import com.thelma.controller.impl.RegularFrame;
 
-class Game {
+public class Game {
     private Frame[] frames; //array of 10 frames
     private int currentFrameIdx; //index of the frame we are populating
     private int lastSavedScore;
@@ -10,7 +12,7 @@ class Game {
     private int ballsNotScored; //number of balls whose score was not saved yet
     private boolean complete; //if game is complete or not
 
-    Game() {
+    public Game() {
         frames = new Frame[10];
         ballsNotScored = 0;
         nextFrameToScoreIdx = 0;
@@ -20,7 +22,7 @@ class Game {
         lastSavedScore = 0;
     }
 
-    boolean isComplete(){
+    public boolean isComplete(){
         return complete;
     }
 
@@ -33,13 +35,13 @@ class Game {
         return frames[nextFrameToScoreIdx].getBallsToScore();
     }
 
-    void saveBall(char pitfall) throws Exception {
+    public void saveBall(char pitfall) throws Exception {
         Frame frame = frames[currentFrameIdx];
         if (frame == null){
             if(currentFrameIdx == 9){
                 frame = new LastFrame();
             } else {
-                frame = new Frame();
+                frame = new RegularFrame();
             }
             frames[currentFrameIdx] = frame;
         }

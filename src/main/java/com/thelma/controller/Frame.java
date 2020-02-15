@@ -1,35 +1,31 @@
-package com.thelma.model;
+package com.thelma.controller;
 
-class Frame {
-    Character[] balls;
-    int score;
-    int ballsToScore;
-    int currentIdx;
+public abstract class Frame {
+
+    protected Character[] balls;
+    private int score;
+    protected int ballsToScore;
+    protected int currentIdx;
     private int frameVal;
 
-    Frame(){
-        balls = new Character[2];
+    public Frame(){
+        balls = new Character[getNumberOfChances()];
         score = 0;
         ballsToScore = 0;
         currentIdx = -1;
     }
 
-    int getMaxPins(){
-        return 10 - getPreviousVal();
-    }
+    protected abstract int getNumberOfChances();
+
+    protected abstract int getMaxPins();
 
     int getFrameVal(){
         return frameVal;
     }
 
-    void handleStrike(){
-        balls[0] = '\0';
-        currentIdx++;
-    }
+    protected void handleStrike(){}
 
-    char formatIfSpare(){
-        return '/';
-    }
+    protected abstract char formatIfSpare();
 
     int saveBall(char pitfall) throws Exception {
         currentIdx++;
@@ -58,11 +54,9 @@ class Frame {
         return ballsToScore;
     }
 
-    boolean isComplete() {
-        return currentIdx == 1;
-    }
+    public abstract boolean isComplete();
 
-    int getPreviousVal() {
+    protected int getPreviousVal() {
         return getVal(balls[currentIdx - 1]);
     }
 
@@ -81,7 +75,5 @@ class Frame {
         return Character.getNumericValue(pitfalls);
     }
 
-    String getBallsString(){
-        return balls[0] + "\t" + balls[1];
-    }
+    public abstract String getBallsString();
 }
