@@ -11,10 +11,7 @@ class LastFrame extends Frame {
 
     @Override
     boolean isComplete() {
-        if(ballsToScore == 0){
-            return currentIdx == 1;
-        }
-        return currentIdx == 2;
+        return (ballsToScore == 0) ? (currentIdx == 1) : (currentIdx == 2);
     }
 
     @Override
