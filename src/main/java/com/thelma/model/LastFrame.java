@@ -5,13 +5,13 @@ class LastFrame extends Frame {
     LastFrame(){
         balls = new Character[3];
         score = 0;
-        fwdBallsToScore = 0;
+        ballsToScore = 0;
         currentIdx = -1;
     }
 
     @Override
     boolean isComplete() {
-        if(fwdBallsToScore == 0){
+        if(ballsToScore == 0){
             return currentIdx == 1;
         }
         return currentIdx == 2;

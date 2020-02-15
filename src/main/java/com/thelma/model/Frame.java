@@ -3,14 +3,14 @@ package com.thelma.model;
 class Frame {
     Character[] balls;
     int score;
-    int fwdBallsToScore;
+    int ballsToScore;
     int currentIdx;
     private int frameVal;
 
     Frame(){
         balls = new Character[2];
         score = 0;
-        fwdBallsToScore = 0;
+        ballsToScore = 0;
         currentIdx = -1;
     }
 
@@ -30,14 +30,14 @@ class Frame {
         if(currentIdx == 0){
             if(pitfall == 'X'){
                 balls[0] = ' ';
-                fwdBallsToScore = 2;
+                ballsToScore = 2;
                 currentIdx++;
             }
         } else{
             int maxPins = getMaxPins();
             if(frameVal == maxPins){
                 formattedPitfall = '/';
-                fwdBallsToScore = 1;
+                ballsToScore = 1;
             } else if (frameVal > maxPins){
                 throw new Exception("Invalid second throw");
             }
@@ -46,8 +46,8 @@ class Frame {
         return val;
     }
 
-    int getFwdBallsToScore(){
-        return fwdBallsToScore;
+    int getBallsToScore(){
+        return ballsToScore;
     }
 
     boolean isComplete() {

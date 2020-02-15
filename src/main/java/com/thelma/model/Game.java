@@ -24,6 +24,10 @@ public class Game {
         return complete;
     }
 
+    private int getBallsToScoreNextFrame(){
+        return frames[nextFrameToScoreIdx].getBallsToScore();
+    }
+
     void saveBall(char pitfall) throws Exception {
         Frame frame = frames[currentFrameIdx];
         if (frame == null){
@@ -35,28 +39,27 @@ public class Game {
             frames[currentFrameIdx] = frame;
         }
         currentScore += frame.saveBall(pitfall);
-        if(frames[nextFrameToScoreIdx].getFwdBallsToScore() > 0){
-            if (ballsNotScored == frames[nextFrameToScoreIdx].getFwdBallsToScore()) {
-                lastSavedScore += currentScore;
-                currentScore -= frames[nextFrameToScoreIdx].getFrameVal();
-                frames[nextFrameToScoreIdx].score(lastSavedScore);
-                nextFrameToScoreIdx++;
+        if(getBallsToScoreNextFrame() > 0){
+            if (ballsNotScored == getBallsToScoreNextFrame()) {
+                calculateScores();
             } else {
                 ballsNotScored++;
             }
         }
         if (frame.isComplete()) {
             currentFrameIdx++;
-            if(currentFrameIdx == 10){
-                complete = true;
-            }
-            if(complete || frames[nextFrameToScoreIdx].getFwdBallsToScore() == 0){
-                lastSavedScore += currentScore;
-                currentScore -= frames[nextFrameToScoreIdx].getFrameVal();
-                frames[nextFrameToScoreIdx].score(lastSavedScore);
-                nextFrameToScoreIdx++;
+            complete = (currentFrameIdx == 10);
+            if(getBallsToScoreNextFrame() == 0 || complete){
+                calculateScores();
                 ballsNotScored = 0;
             }
         }
+    }
+
+    private void calculateScores(){
+        lastSavedScore += currentScore;
+        frames[nextFrameToScoreIdx].score(lastSavedScore);
+        currentScore -= frames[nextFrameToScoreIdx].getFrameVal();
+        nextFrameToScoreIdx++;
     }
 }
