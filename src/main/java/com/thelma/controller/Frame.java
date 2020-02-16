@@ -2,20 +2,22 @@ package com.thelma.controller;
 
 public abstract class Frame {
 
-    protected Character[] balls;
     private int score;
     protected int ballsToScore;
     protected int currentIdx;
     private int frameVal;
 
     public Frame(){
-        balls = new Character[getNumberOfChances()];
         score = 0;
         ballsToScore = 0;
         currentIdx = -1;
     }
 
-    protected abstract int getNumberOfChances();
+    protected abstract Iterable<Character> getChances();
+
+    protected abstract Character getChance(int index);
+
+    protected abstract void setChance(int index, Character chance) throws Exception;
 
     protected abstract int getMaxPins();
 
@@ -23,7 +25,7 @@ public abstract class Frame {
         return frameVal;
     }
 
-    protected void handleStrike(){
+    protected void handleStrike() throws Exception {
         ballsToScore = 2;
     }
 
@@ -46,7 +48,7 @@ public abstract class Frame {
                 throw new Exception("Invalid second throw");
             }
         }
-        balls[currentIdx] = formattedPitfall;
+        setChance(currentIdx, formattedPitfall);
         return val;
     }
 
@@ -57,7 +59,7 @@ public abstract class Frame {
     public abstract boolean isComplete();
 
     protected int getPreviousVal() {
-        return getVal(balls[currentIdx - 1]);
+        return getVal(getChance(currentIdx - 1));
     }
 
     void score(int value) {
@@ -77,7 +79,7 @@ public abstract class Frame {
 
     String getBallsString(){
         StringBuilder sb = new StringBuilder();
-        for(Character ball: balls){
+        for(Character ball: getChances()){
             if(ball != null) sb.append(ball).append("\t");
         }
         return sb.substring(0, sb.length() - 1);
