@@ -101,6 +101,47 @@
                   </execution>
               </executions>
           </plugin>
+          <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>build-helper-maven-plugin</artifactId>
+              <executions>
+                  <execution>
+                      <id>add-test-source</id>
+                      <phase>pre-integration-test</phase>
+                      <goals>
+                          <goal>integration-test</goal>
+                      </goals>
+                      <configuration>
+                          <sources>
+                              <source>src/test/java/com/thelma/integration</source>
+                          </sources>
+                      </configuration>
+                  </execution>
+              </executions>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-failsafe-plugin</artifactId>
+              <configuration>
+                  <includes>
+                      <include>**/*IT</include>
+                  </includes>
+              </configuration>
+              <executions>
+                  <execution>
+                      <id>integration-testing</id>
+                      <goals>
+                          <goal>integration-test</goal>
+                      </goals>
+                  </execution>
+                  <execution>
+                      <id>run-verify</id>
+                      <goals>
+                          <goal>verify</goal>
+                      </goals>
+                  </execution>
+              </executions>
+          </plugin>
       </plugins>
     </pluginManagement>
   </build>
