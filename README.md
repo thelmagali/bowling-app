@@ -10,8 +10,6 @@ Java application that simulates a bowling game and prints out the final score.
 ## Run
   <code>java -jar bowling-app.jar <name_of_input_file></code>
 <p>To see quickly how the output looks, you can run the app for the sample input already included in the package</p>
-  <code>java -jar bowling-app.jar sample-input</code>
-  <p> Note: this is assuming you are in the directory containing the jar. If you are in the base directory if the repo do this </p>
   <code>java -jar target/bowling-app.jar sample-input</code>
 
 ## Input
