@@ -16,13 +16,12 @@ class AppIT {
         File outputFile = File.createTempFile(inputFile, "tmp");
         System.setOut(new PrintStream(new FileOutputStream(outputFile)));
         App.main(new String[]{INPUT_DIR + inputFile});
-        Scanner expectedScanner = new Scanner(new File(EXP_OUT_DIR + inputFile));
-        Scanner actualScanner = new Scanner(outputFile);
-        while(expectedScanner.hasNext()){
-            Assertions.assertEquals(expectedScanner.nextLine(), actualScanner.nextLine());
+        try (Scanner expectedScanner = new Scanner(new File(EXP_OUT_DIR + inputFile));
+             Scanner actualScanner = new Scanner(outputFile)) {
+            while (expectedScanner.hasNext()) {
+                Assertions.assertEquals(expectedScanner.nextLine(), actualScanner.nextLine());
+            }
         }
-        expectedScanner.close();
-        actualScanner.close();
     }
 
 
