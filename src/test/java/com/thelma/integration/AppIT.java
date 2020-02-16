@@ -54,5 +54,10 @@ class AppIT {
         testHelper("zero-game");
     }
 
+    @Test
+    void testSparesGame() throws IOException {
+        testHelper("spares-game");
+    }
+
 
 }
