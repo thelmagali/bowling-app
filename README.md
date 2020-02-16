@@ -8,7 +8,7 @@ Java application that simulates a bowling game and prints out the final score.
 `mvn failsafe:integration-test`
 
 ## Run
-  <code>java -jar bowling-app.jar <name_of_input_file></code>
+  <code>java -jar target/bowling-app.jar <name_of_input_file></code>
 <p>To see quickly how the output looks, you can run the app for the sample input already included in the package</p>
   <code>java -jar target/bowling-app.jar sample-input</code>
 
