@@ -27,11 +27,6 @@ public class Game {
     }
 
     private int getBallsToScoreNextFrame(){
-        if (nextFrameToScoreIdx == 10){
-            complete = true;
-            nextFrameToScoreIdx = 9;
-            return 0;
-        }
         return frames[nextFrameToScoreIdx].getBallsToScore();
     }
 
@@ -53,10 +48,14 @@ public class Game {
                 ballsNotScored++;
             }
         }
-        if (frame.isComplete()) {
-            currentFrameIdx++;
-            complete = (currentFrameIdx == 10);
-            if(getBallsToScoreNextFrame() == 0 || complete){
+        if(frame.isComplete()){
+            if(currentFrameIdx == 9){
+                complete = true;
+                nextFrameToScoreIdx = 9;
+            } else{
+                currentFrameIdx++;
+            }
+            if(complete || getBallsToScoreNextFrame() == 0){
                 calculateScores();
                 ballsNotScored = 0;
             }
@@ -67,25 +66,22 @@ public class Game {
         lastSavedScore += currentScore;
         frames[nextFrameToScoreIdx].score(lastSavedScore);
         currentScore -= frames[nextFrameToScoreIdx].getFrameVal();
-        nextFrameToScoreIdx++;
+        if(nextFrameToScoreIdx < currentFrameIdx){
+            nextFrameToScoreIdx++;
+        }
+
     }
 
     @Override
     public String toString() {
-        StringBuilder ballsBuilder = new StringBuilder("Pinfalls\t");
-        StringBuilder scoreBuilder = new StringBuilder("Score\t\t");
-        for(int i = 0; i < currentFrameIdx; i++){
-            ballsBuilder.append(frames[i].getBallsString()).append("\t");
-            scoreBuilder.append(frames[i].getScore()).append("\t\t");
-        }
-        if(currentFrameIdx > 0){
-            ballsBuilder.deleteCharAt(ballsBuilder.length() - 1);
-            scoreBuilder.substring(0, scoreBuilder.length() - 2);
+        StringBuilder ballsBuilder = new StringBuilder("Pinfalls");
+        StringBuilder scoreBuilder = new StringBuilder("Score");
+        for(int i = 0; i <= currentFrameIdx; i++){
+            if(frames[i] != null){
+                ballsBuilder.append(frames[i].getBallsString());
+                scoreBuilder.append("\t\t").append(frames[i].getScore());
+            }
         }
         return ballsBuilder.append('\n').append(scoreBuilder).toString();
-    }
-
-    int getLastSavedScore(){
-        return lastSavedScore;
     }
 }

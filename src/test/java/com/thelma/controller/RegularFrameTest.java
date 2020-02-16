@@ -18,7 +18,7 @@ class RegularFrameTest {
         regularFrame.saveBall('5');
         regularFrame.saveBall('4');
         Assertions.assertEquals(9, regularFrame.getFrameVal());
-        Assertions.assertEquals("5\t4", regularFrame.getBallsString());
+        Assertions.assertEquals("\t5\t4", regularFrame.getBallsString());
     }
 
     @Test
@@ -28,7 +28,7 @@ class RegularFrameTest {
         regularFrame.saveBall('2');
         regularFrame.saveBall('8');
         Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("2\t/", regularFrame.getBallsString());
+        Assertions.assertEquals("\t2\t/", regularFrame.getBallsString());
         Assertions.assertEquals(1, regularFrame.getBallsToScore());
     }
 
@@ -39,7 +39,7 @@ class RegularFrameTest {
         regularFrame.saveBall('0');
         regularFrame.saveBall('X');
         Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("0\t/", regularFrame.getBallsString());
+        Assertions.assertEquals("\t0\t/", regularFrame.getBallsString());
         Assertions.assertEquals(1, regularFrame.getBallsToScore());
     }
 
@@ -50,7 +50,7 @@ class RegularFrameTest {
         regularFrame.saveBall('F');
         regularFrame.saveBall('X');
         Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("F\t/", regularFrame.getBallsString());
+        Assertions.assertEquals("\tF\t/", regularFrame.getBallsString());
         Assertions.assertEquals(1, regularFrame.getBallsToScore());
     }
 
@@ -60,7 +60,7 @@ class RegularFrameTest {
         Frame regularFrame = getFrameInstance();
         regularFrame.saveBall('X');
         Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("\0\tX", regularFrame.getBallsString());
+        Assertions.assertEquals("\t\0\tX", regularFrame.getBallsString());
         Assertions.assertEquals(2, regularFrame.getBallsToScore());
     }
 

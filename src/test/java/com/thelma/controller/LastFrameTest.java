@@ -18,7 +18,7 @@ class LastFrameTest extends RegularFrameTest{
         Frame frame = getFrameInstance();
         frame.saveBall('X');
         Assertions.assertEquals(10, frame.getFrameVal());
-        Assertions.assertEquals("X", frame.getBallsString());
+        Assertions.assertEquals("\tX", frame.getBallsString());
         Assertions.assertEquals(2, frame.getBallsToScore());
     }
 
@@ -32,7 +32,7 @@ class LastFrameTest extends RegularFrameTest{
             frame.saveBall('X');
         });
         Assertions.assertEquals(20, frame.getFrameVal());
-        Assertions.assertEquals("X\tX", frame.getBallsString());
+        Assertions.assertEquals("\tX\tX", frame.getBallsString());
         Assertions.assertEquals(2, frame.getBallsToScore());
     }
 
@@ -49,14 +49,14 @@ class LastFrameTest extends RegularFrameTest{
 
     @Override
     @Test
-    @DisplayName("Try to save 3 chances, being the middle one a spare. No exception should be thrown")
+    @DisplayName("Save 3 chances, being the middle one a spare. No exception should be thrown")
     void testFrame9() throws Exception {
         Frame frame = getFrameInstance();
         frame.saveBall('4');
         frame.saveBall('6');
         frame.saveBall('3');
         Assertions.assertEquals(13, frame.getFrameVal());
-        Assertions.assertEquals("4\t/\t3", frame.getBallsString());
+        Assertions.assertEquals("\t4\t/\t3", frame.getBallsString());
         Assertions.assertEquals(1, frame.getBallsToScore());
     }
 
@@ -70,7 +70,7 @@ class LastFrameTest extends RegularFrameTest{
             frame.saveBall('X');
         });
         Assertions.assertEquals(30, frame.getFrameVal());
-        Assertions.assertEquals("X\tX\tX", frame.getBallsString());
+        Assertions.assertEquals("\tX\tX\tX", frame.getBallsString());
         Assertions.assertEquals(2, frame.getBallsToScore());
     }
 }
