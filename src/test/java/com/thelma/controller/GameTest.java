@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class GameTest {
     
-    private final String PINFALLS = "Pinfalls\t";
+    private final String PINFALLS = "Pinfalls";
     private final String SCORE = "\nScore\t\t";
 
     @Test
@@ -24,7 +24,7 @@ class GameTest {
     void scoreX1() throws Exception {
         Game game = new Game();
         game.saveBall('X');
-        String expectedString = PINFALLS+"\0\tX"+SCORE+"0";
+        String expectedString = PINFALLS+"\tX"+SCORE+"0";
         Assertions.assertEquals(expectedString, game.toString());
     }
 
@@ -34,7 +34,7 @@ class GameTest {
         Game game = new Game();
         game.saveBall('X');
         game.saveBall('9');
-        String expectedString = PINFALLS+"\0\tX\t9"+SCORE+"0\t\t0";
+        String expectedString = PINFALLS+"\tX\t9"+SCORE+"0\t\t0";
         Assertions.assertEquals(expectedString, game.toString());
     }
 
@@ -45,7 +45,7 @@ class GameTest {
         game.saveBall('X');
         game.saveBall('8');
         game.saveBall('1');
-        String expectedString = PINFALLS+"\0\tX\t8\t1"+SCORE+"19\t\t28";
+        String expectedString = PINFALLS+"\tX\t8\t1"+SCORE+"19\t\t28";
         Assertions.assertEquals(expectedString, game.toString());
     }
 
@@ -77,7 +77,7 @@ class GameTest {
         game.saveBall('5');
         game.saveBall('5');
         game.saveBall('X');
-        String expectedString = PINFALLS+"5\t/\t\0\tX"+SCORE+"20\t\t0";
+        String expectedString = PINFALLS+"5\t/\t\tX"+SCORE+"20\t\t0";
         Assertions.assertEquals(expectedString, game.toString());
     }
 

@@ -78,7 +78,12 @@ public abstract class Frame {
     String getBallsString(){
         StringBuilder sb = new StringBuilder();
         for(Character ball: balls){
-            if(ball != null) sb.append("\t").append(ball);
+            if(ball != null){
+                sb.append("\t");
+                if(ball != '\0'){
+                    sb.append(ball);
+                }
+            }
         }
         return sb.toString();
     }

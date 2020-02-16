@@ -60,7 +60,7 @@ class RegularFrameTest {
         Frame regularFrame = getFrameInstance();
         regularFrame.saveBall('X');
         Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("\t\0\tX", regularFrame.getBallsString());
+        Assertions.assertEquals("\t\tX", regularFrame.getBallsString());
         Assertions.assertEquals(2, regularFrame.getBallsToScore());
     }
 
