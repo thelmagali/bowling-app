@@ -38,7 +38,7 @@ class AppIT {
 
     @Test
     void testRandomGame1() throws IOException {
-        testBowlingGame("random-game-1");
+        testBowlingGame("2-players-random");
     }
 
 
