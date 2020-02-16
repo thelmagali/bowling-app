@@ -70,7 +70,8 @@ public class Game {
         nextFrameToScoreIdx++;
     }
 
-    void print() {
+    @Override
+    public String toString() {
         StringBuilder ballsBuilder = new StringBuilder("Pinfalls\t");
         StringBuilder scoreBuilder = new StringBuilder("Score\t\t");
         for(int i = 0; i < currentFrameIdx; i++){
@@ -81,7 +82,10 @@ public class Game {
             ballsBuilder.deleteCharAt(ballsBuilder.length() - 1);
             scoreBuilder.substring(0, scoreBuilder.length() - 2);
         }
-        System.out.println(ballsBuilder.toString());
-        System.out.println(scoreBuilder.toString());
+        return ballsBuilder.append('\n').append(scoreBuilder).toString();
+    }
+
+    int getLastSavedScore(){
+        return lastSavedScore;
     }
 }

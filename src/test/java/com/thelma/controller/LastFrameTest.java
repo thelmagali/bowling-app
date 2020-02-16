@@ -37,6 +37,30 @@ class LastFrameTest extends RegularFrameTest{
     }
 
     @Test
+    @DisplayName("Try to save 3 chances. No exception should be thrown because this semantic is validated in the game, not in the frame")
+    void testFrame8() {
+        Frame regularFrame = getFrameInstance();
+        Assertions.assertDoesNotThrow(() -> {
+            regularFrame.saveBall('1');
+            regularFrame.saveBall('2');
+            regularFrame.saveBall('3');
+        });
+    }
+
+    @Override
+    @Test
+    @DisplayName("Try to save 3 chances, being the middle one a spare. No exception should be thrown")
+    void testFrame9() throws Exception {
+        Frame frame = getFrameInstance();
+        frame.saveBall('4');
+        frame.saveBall('6');
+        frame.saveBall('3');
+        Assertions.assertEquals(13, frame.getFrameVal());
+        Assertions.assertEquals("4\t/\t3", frame.getBallsString());
+        Assertions.assertEquals(1, frame.getBallsToScore());
+    }
+
+    @Test
     @DisplayName("Save chance with 10, 10 and 10 pitfalls. No exception should be thrown")
     void testLastFrame1(){
         Frame frame = getFrameInstance();

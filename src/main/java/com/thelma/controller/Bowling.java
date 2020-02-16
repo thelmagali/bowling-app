@@ -27,7 +27,7 @@ public abstract class Bowling {
         System.out.println("RegularFrame\t\t1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7\t\t8\t\t9\t\t10");
         for(PlayerGame playerGame: getRecords()){
             System.out.println(playerGame.getName());
-            playerGame.getGame().print();
+            System.out.println(playerGame.getGame());
         }
     }
 
