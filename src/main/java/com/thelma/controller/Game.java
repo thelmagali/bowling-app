@@ -45,6 +45,9 @@ public class Game {
             ballsNotScored++;
             if (ballsNotScored > getBallsToScoreNextFrame()) {
                 calculateScores();
+                if(frames[currentFrameIdx].getBallsToScore() == 0){
+                    ballsNotScored--;
+                }
             }
         }
         if(frame.isComplete()){
