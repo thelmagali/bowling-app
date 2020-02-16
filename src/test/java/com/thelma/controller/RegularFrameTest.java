@@ -90,23 +90,21 @@ class RegularFrameTest {
     @DisplayName("Try to save 3 chances. An exception should be thrown")
     void testFrame8() {
         Frame regularFrame = getFrameInstance();
-        Exception thrown = Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
             regularFrame.saveBall('1');
             regularFrame.saveBall('2');
             regularFrame.saveBall('3');
         });
-        Assertions.assertEquals("Invalid throw. Frame is complete", thrown.getMessage());
     }
 
     @Test
     @DisplayName("Try to save 3 chances, being the middle one a spare. An exception should be thrown")
     void testFrame9() throws Exception {
         Frame regularFrame = getFrameInstance();
-        Exception thrown = Assertions.assertThrows(Exception.class, () -> {
+        Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
             regularFrame.saveBall('4');
             regularFrame.saveBall('6');
             regularFrame.saveBall('3');
         });
-        Assertions.assertEquals("Invalid throw. Frame is complete", thrown.getMessage());
     }
 }
