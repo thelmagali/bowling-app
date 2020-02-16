@@ -42,10 +42,9 @@ public class Game {
         }
         currentScore += frame.saveBall(pitfall);
         if(getBallsToScoreNextFrame() > 0){
-            if (ballsNotScored >= getBallsToScoreNextFrame()) {
+            ballsNotScored++;
+            if (ballsNotScored > getBallsToScoreNextFrame()) {
                 calculateScores();
-            } else {
-                ballsNotScored++;
             }
         }
         if(frame.isComplete()){

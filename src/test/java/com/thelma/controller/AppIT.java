@@ -40,4 +40,9 @@ class AppIT {
     void testRandomGame1() throws IOException {
         testBowlingGame("random-game-1");
     }
+
+    @Test
+    void testRandomSingle() throws IOException {
+        testBowlingGame("random-single");
+    }
 }
