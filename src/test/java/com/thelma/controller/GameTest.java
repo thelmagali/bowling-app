@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class GameTest {
     
-    private final String PINFALLS = "Pinfalls";
+    private final String PINFALLS = "Pinfalls\t";
     private final String SCORE = "\nScore\t\t";
 
     @Test
