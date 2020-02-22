@@ -17,8 +17,8 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("Should score instantly a frame without strike or spare")
     void scoreNormally() throws Exception {
-        game.saveBall('3');
-        game.saveBall('6');
+        game.saveChance('3');
+        game.saveChance('6');
         String expectedString = PINFALLS+"3\t6"+SCORE+"9";
         Assertions.assertEquals(expectedString, game.toString());
     }
@@ -26,7 +26,7 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("Should not score instantly a frame with strike")
     void scoreX1() throws Exception {
-        game.saveBall('X');
+        game.saveChance('X');
         String expectedString = PINFALLS+"\tX"+SCORE+"0";
         Assertions.assertEquals(expectedString, game.toString());
     }
@@ -34,8 +34,8 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("A strike should not yet be scored after 1 extra chance")
     void scoreX2() throws Exception {
-        game.saveBall('X');
-        game.saveBall('9');
+        game.saveChance('X');
+        game.saveChance('9');
         String expectedString = PINFALLS+"\tX\t9"+SCORE+"0\t\t0";
         Assertions.assertEquals(expectedString, game.toString());
     }
@@ -43,9 +43,9 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("A strike should be scored after 2 extra chances")
     void scoreX3() throws Exception {
-        game.saveBall('X');
-        game.saveBall('8');
-        game.saveBall('1');
+        game.saveChance('X');
+        game.saveChance('8');
+        game.saveChance('1');
         String expectedString = PINFALLS+"\tX\t8\t1"+SCORE+"19\t\t28";
         Assertions.assertEquals(expectedString, game.toString());
     }
@@ -53,8 +53,8 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("Should not score instantly a frame with spare")
     void scoreSpare1() throws Exception {
-        game.saveBall('5');
-        game.saveBall('5');
+        game.saveChance('5');
+        game.saveChance('5');
         String expectedString = PINFALLS+"5\t/"+SCORE+"0";
         Assertions.assertEquals(expectedString, game.toString());
     }
@@ -62,9 +62,9 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("A spare should be scored after 1 more chance")
     void scoreSpare2() throws Exception {
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('2');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('2');
         String expectedString = PINFALLS+"5\t/\t2"+SCORE+"12\t\t0";
         Assertions.assertEquals(expectedString, game.toString());
     }
@@ -72,9 +72,9 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("A spare should be scored after 1 more chance. Next is strike")
     void scoreSpare3() throws Exception {
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('X');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('X');
         String expectedString = PINFALLS+"5\t/\t\tX"+SCORE+"20\t\t0";
         Assertions.assertEquals(expectedString, game.toString());
     }
@@ -82,28 +82,28 @@ class GameTest extends BaseWeldTest {
     @Test
     @DisplayName("Complete a game. Check if isComplete = true")
     void completeGame() throws Exception {
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
-        game.saveBall('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
+        game.saveChance('5');
         Assertions.assertFalse(game.isComplete());
-        game.saveBall('5');
+        game.saveChance('5');
         Assertions.assertTrue(game.isComplete());
     }
 }

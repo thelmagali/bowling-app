@@ -21,13 +21,13 @@ public class GameImpl implements Game {
     private int lastSavedScore;
     private int currentScore; //accumulated score in the game
     private int nextFrameToScoreIdx; //the first frame whose score was not saved yet
-    private int ballsNotScored; //number of balls whose score was not saved yet
+    private int chancesNotScored; //number of chances whose score was not saved yet
     private boolean complete; //if game is complete or not
 
     @PostConstruct
     public void init() {
         frames = new Frame[10];
-        ballsNotScored = 0;
+        chancesNotScored = 0;
         nextFrameToScoreIdx = 0;
         currentScore = 0;
         complete = false;
@@ -39,11 +39,11 @@ public class GameImpl implements Game {
         return complete;
     }
 
-    private int getBallsToScoreNextFrame(){
-        return frames[nextFrameToScoreIdx].getBallsToScore();
+    private int getChancesToScoreNext(){
+        return frames[nextFrameToScoreIdx].getChancesToScore();
     }
 
-    public void saveBall(char pitfall) throws Exception {
+    public void saveChance(char pinfalls) throws Exception {
         Frame frame = frames[currentFrameIdx];
         if (frame == null){
             if(currentFrameIdx != 9){
@@ -53,15 +53,15 @@ public class GameImpl implements Game {
             }
             frames[currentFrameIdx] = frame;
         }
-        currentScore += frame.saveBall(pitfall);
-        if(getBallsToScoreNextFrame() > 0){
-            ballsNotScored++;
-            if (ballsNotScored > getBallsToScoreNextFrame()) {
+        currentScore += frame.saveChance(pinfalls);
+        if(getChancesToScoreNext() > 0){
+            chancesNotScored++;
+            if (chancesNotScored > getChancesToScoreNext()) {
                 calculateScores();
-                if(getBallsToScoreNextFrame() == 0){
-                    ballsNotScored = 0;
+                if(getChancesToScoreNext() == 0){
+                    chancesNotScored = 0;
                 } else{
-                    ballsNotScored--;
+                    chancesNotScored--;
                 }
             }
         }
@@ -72,9 +72,9 @@ public class GameImpl implements Game {
             } else{
                 currentFrameIdx++;
             }
-            if(complete || getBallsToScoreNextFrame() == 0){
+            if(complete || getChancesToScoreNext() == 0){
                 calculateScores();
-                ballsNotScored = 0;
+                chancesNotScored = 0;
             }
         }
     }
@@ -82,7 +82,7 @@ public class GameImpl implements Game {
     private void calculateScores(){
         lastSavedScore += currentScore;
         frames[nextFrameToScoreIdx].score(lastSavedScore);
-        currentScore -= frames[nextFrameToScoreIdx].getFrameVal();
+        currentScore -= frames[nextFrameToScoreIdx].getFramePinfalls();
         if(nextFrameToScoreIdx < currentFrameIdx){
             nextFrameToScoreIdx++;
         }
@@ -91,14 +91,14 @@ public class GameImpl implements Game {
 
     @Override
     public String toString() {
-        StringBuilder ballsBuilder = new StringBuilder("Pinfalls");
+        StringBuilder chancesBuilder = new StringBuilder("Pinfalls");
         StringBuilder scoreBuilder = new StringBuilder("Score");
         for(int i = 0; i <= currentFrameIdx; i++){
             if(frames[i] != null){
-                ballsBuilder.append(frames[i].getBallsString());
+                chancesBuilder.append(frames[i].getChancesString());
                 scoreBuilder.append("\t\t").append(frames[i].getScore());
             }
         }
-        return ballsBuilder.append('\n').append(scoreBuilder).toString();
+        return chancesBuilder.append('\n').append(scoreBuilder).toString();
     }
 }

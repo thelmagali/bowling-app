@@ -12,76 +12,76 @@ class RegularFrameTest {
     }
 
     @Test
-    @DisplayName("Save chances with 5 and 4 pitfalls. Check sum and string repr")
+    @DisplayName("Save chances with 5 and 4 pinfalls. Check sum and string repr")
     void testFrame1() throws Exception {
         Frame regularFrame = getFrameInstance();
-        regularFrame.saveBall('5');
-        regularFrame.saveBall('4');
-        Assertions.assertEquals(9, regularFrame.getFrameVal());
-        Assertions.assertEquals("\t5\t4", regularFrame.getBallsString());
+        regularFrame.saveChance('5');
+        regularFrame.saveChance('4');
+        Assertions.assertEquals(9, regularFrame.getFramePinfalls());
+        Assertions.assertEquals("\t5\t4", regularFrame.getChancesString());
     }
 
     @Test
-    @DisplayName("Save chances with 2 and 8 pitfalls. Check if spare was processed correctly")
+    @DisplayName("Save chances with 2 and 8 pinfalls. Check if spare was processed correctly")
     void testFrame2() throws Exception {
         Frame regularFrame = getFrameInstance();
-        regularFrame.saveBall('2');
-        regularFrame.saveBall('8');
-        Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("\t2\t/", regularFrame.getBallsString());
-        Assertions.assertEquals(1, regularFrame.getBallsToScore());
+        regularFrame.saveChance('2');
+        regularFrame.saveChance('8');
+        Assertions.assertEquals(10, regularFrame.getFramePinfalls());
+        Assertions.assertEquals("\t2\t/", regularFrame.getChancesString());
+        Assertions.assertEquals(1, regularFrame.getChancesToScore());
     }
 
     @Test
-    @DisplayName("Save chances with 0 and 10 pitfalls. Check if spare was processed correctly")
+    @DisplayName("Save chances with 0 and 10 pinfalls. Check if spare was processed correctly")
     void testFrame3() throws Exception {
         Frame regularFrame = getFrameInstance();
-        regularFrame.saveBall('0');
-        regularFrame.saveBall('X');
-        Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("\t0\t/", regularFrame.getBallsString());
-        Assertions.assertEquals(1, regularFrame.getBallsToScore());
+        regularFrame.saveChance('0');
+        regularFrame.saveChance('X');
+        Assertions.assertEquals(10, regularFrame.getFramePinfalls());
+        Assertions.assertEquals("\t0\t/", regularFrame.getChancesString());
+        Assertions.assertEquals(1, regularFrame.getChancesToScore());
     }
 
     @Test
-    @DisplayName("Save chances with F and 10 pitfalls. Check if spare was processed correctly")
+    @DisplayName("Save chances with F and 10 pinfalls. Check if spare was processed correctly")
     void testFrame4() throws Exception {
         Frame regularFrame = getFrameInstance();
-        regularFrame.saveBall('F');
-        regularFrame.saveBall('X');
-        Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("\tF\t/", regularFrame.getBallsString());
-        Assertions.assertEquals(1, regularFrame.getBallsToScore());
+        regularFrame.saveChance('F');
+        regularFrame.saveChance('X');
+        Assertions.assertEquals(10, regularFrame.getFramePinfalls());
+        Assertions.assertEquals("\tF\t/", regularFrame.getChancesString());
+        Assertions.assertEquals(1, regularFrame.getChancesToScore());
     }
 
     @Test
-    @DisplayName("Save chance with 10 pitfalls. Check if strike was processed correctly")
+    @DisplayName("Save chance with 10 pinfalls. Check if strike was processed correctly")
     void testFrame5() throws Exception {
         Frame regularFrame = getFrameInstance();
-        regularFrame.saveBall('X');
-        Assertions.assertEquals(10, regularFrame.getFrameVal());
-        Assertions.assertEquals("\t\tX", regularFrame.getBallsString());
-        Assertions.assertEquals(2, regularFrame.getBallsToScore());
+        regularFrame.saveChance('X');
+        Assertions.assertEquals(10, regularFrame.getFramePinfalls());
+        Assertions.assertEquals("\t\tX", regularFrame.getChancesString());
+        Assertions.assertEquals(2, regularFrame.getChancesToScore());
     }
 
     @Test
-    @DisplayName("Save chance with 4 and 7 pitfalls. An exception should be thrown")
+    @DisplayName("Save chance with 4 and 7 pinfalls. An exception should be thrown")
     void testFrame6() {
         Frame regularFrame = getFrameInstance();
         Exception thrown = Assertions.assertThrows(Exception.class, () -> {
-            regularFrame.saveBall('4');
-            regularFrame.saveBall('7');
+            regularFrame.saveChance('4');
+            regularFrame.saveChance('7');
         });
         Assertions.assertEquals("Invalid second throw", thrown.getMessage());
     }
 
     @Test
-    @DisplayName("Save chance with 10 and 10 pitfalls. An exception should be thrown")
+    @DisplayName("Save chance with 10 and 10 pinfalls. An exception should be thrown")
     void testFrame7() {
         Frame regularFrame = getFrameInstance();
         Exception thrown = Assertions.assertThrows(Exception.class, () -> {
-                regularFrame.saveBall('X');
-                regularFrame.saveBall('X');
+                regularFrame.saveChance('X');
+                regularFrame.saveChance('X');
         });
         Assertions.assertEquals("Invalid second throw", thrown.getMessage());
     }
@@ -91,9 +91,9 @@ class RegularFrameTest {
     void testFrame8() {
         Frame regularFrame = getFrameInstance();
         Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            regularFrame.saveBall('1');
-            regularFrame.saveBall('2');
-            regularFrame.saveBall('3');
+            regularFrame.saveChance('1');
+            regularFrame.saveChance('2');
+            regularFrame.saveChance('3');
         });
     }
 
@@ -102,9 +102,9 @@ class RegularFrameTest {
     void testFrame9() throws Exception {
         Frame regularFrame = getFrameInstance();
         Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            regularFrame.saveBall('4');
-            regularFrame.saveBall('6');
-            regularFrame.saveBall('3');
+            regularFrame.saveChance('4');
+            regularFrame.saveChance('6');
+            regularFrame.saveChance('3');
         });
     }
 }

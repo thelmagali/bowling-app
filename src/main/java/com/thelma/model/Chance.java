@@ -2,19 +2,19 @@ package com.thelma.model;
 
 public class Chance {
     private String name;
-    private char pitfalls;
+    private char pinfalls;
 
-    public Chance(String name, char pitfalls){
+    public Chance(String name, char pinfalls){
         this.name = name;
-        this.pitfalls = pitfalls;
+        this.pinfalls = pinfalls;
     }
 
     public String getName() {
         return name;
     }
 
-    public char getPitfalls() {
-        return pitfalls;
+    public char getPinfalls() {
+        return pinfalls;
     }
 
 }

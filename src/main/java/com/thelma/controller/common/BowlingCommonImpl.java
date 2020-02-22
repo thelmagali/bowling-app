@@ -1,4 +1,4 @@
-package com.thelma.controller.impl.common;
+package com.thelma.controller.common;
 
 import com.thelma.controller.Bowling;
 import com.thelma.controller.GameInputReader;

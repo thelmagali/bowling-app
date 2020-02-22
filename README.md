@@ -13,5 +13,5 @@ Java application that simulates a bowling game and prints out the final score.
   <code>java -jar target/bowling-app.jar sample-input</code>
 
 ## Input
-Each line of the input file should represent a chance. The information provided for each chance is the name of the player and the number of pitfalls. See this [file](https://github.com/thelmagali/bowling-app/blob/master/src/main/resources/sample-input).
+Each line of the input file should represent a chance. The information provided for each chance is the name of the player and the number of pinfalls. See this [file](https://github.com/thelmagali/bowling-app/blob/master/src/main/resources/sample-input).
 

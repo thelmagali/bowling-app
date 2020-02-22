@@ -1,16 +1,16 @@
-package com.thelma.controller.impl.common;
+package com.thelma.controller.common;
 
 public abstract class FrameCommon {
-    protected Character[] balls;
+    protected Character[] chances;
     private int score;
-    protected int ballsToScore;
+    protected int chancesToScore;
     protected int currentIdx;
     private int frameVal;
 
     public FrameCommon(){
-        balls = new Character[getNumberOfChances()];
+        chances = new Character[getNumberOfChances()];
         score = 0;
-        ballsToScore = 0;
+        chancesToScore = 0;
         currentIdx = -1;
     }
 
@@ -18,23 +18,23 @@ public abstract class FrameCommon {
 
     protected abstract int getMaxPins();
 
-    public int getFrameVal(){
+    public int getFramePinfalls(){
         return frameVal;
     }
 
     protected void handleStrike(){
-        ballsToScore = 2;
+        chancesToScore = 2;
     }
 
     protected abstract char handleSpare();
 
-    public int saveBall(char pitfall) throws Exception {
+    public int saveChance(char pinfalls) throws Exception {
         currentIdx++;
-        char formattedPitfall = pitfall;
-        int val = getVal(pitfall);
+        char formattedPitfall = pinfalls;
+        int val = getVal(pinfalls);
         frameVal += val;
         if(currentIdx == 0){
-            if(pitfall == 'X'){
+            if(pinfalls == 'X'){
                 handleStrike();
             }
         } else{
@@ -45,16 +45,16 @@ public abstract class FrameCommon {
                 throw new Exception("Invalid second throw");
             }
         }
-        balls[currentIdx] = formattedPitfall;
+        chances[currentIdx] = formattedPitfall;
         return val;
     }
 
-    public int getBallsToScore(){
-        return ballsToScore;
+    public int getChancesToScore(){
+        return chancesToScore;
     }
 
     protected int getPreviousVal() {
-        return getVal(balls[currentIdx - 1]);
+        return getVal(chances[currentIdx - 1]);
     }
 
     public void score(int value) {
@@ -65,16 +65,16 @@ public abstract class FrameCommon {
         return score;
     }
 
-    private int getVal(char pitfalls){
-        if(pitfalls == 'F') return 0;
-        if(pitfalls == '\0') return 0;
-        if(pitfalls == 'X') return 10;
-        return Character.getNumericValue(pitfalls);
+    private int getVal(char pinfalls){
+        if(pinfalls == 'F') return 0;
+        if(pinfalls == '\0') return 0;
+        if(pinfalls == 'X') return 10;
+        return Character.getNumericValue(pinfalls);
     }
 
-    public String getBallsString(){
+    public String getChancesString(){
         StringBuilder sb = new StringBuilder();
-        for(Character ball: balls){
+        for(Character ball: chances){
             if(ball != null){
                 sb.append("\t");
                 if(ball != '\0'){

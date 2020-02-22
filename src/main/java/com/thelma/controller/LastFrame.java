@@ -1,3 +1,3 @@
 package com.thelma.controller;
 
-public interface LastFrame extends Frame{}
+public interface LastFrame extends Frame {}

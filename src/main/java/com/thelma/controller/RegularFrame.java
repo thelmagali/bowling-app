@@ -1,3 +1,3 @@
 package com.thelma.controller;
 
-public interface RegularFrame extends Frame{}
+public interface RegularFrame extends Frame {}

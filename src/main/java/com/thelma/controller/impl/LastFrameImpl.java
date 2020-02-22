@@ -1,7 +1,7 @@
 package com.thelma.controller.impl;
 
 import com.thelma.controller.LastFrame;
-import com.thelma.controller.impl.common.FrameCommon;
+import com.thelma.controller.common.FrameCommon;
 
 public class LastFrameImpl extends FrameCommon implements LastFrame {
 
@@ -12,7 +12,7 @@ public class LastFrameImpl extends FrameCommon implements LastFrame {
 
     @Override
     public boolean isComplete() {
-        return (ballsToScore == 0) ? (currentIdx == 1) : (currentIdx == 2);
+        return (chancesToScore == 0) ? (currentIdx == 1) : (currentIdx == 2);
     }
 
     @Override
@@ -23,10 +23,10 @@ public class LastFrameImpl extends FrameCommon implements LastFrame {
     @Override
     protected char handleSpare(){
         if(getPreviousVal() != 10){
-            ballsToScore = 1;
+            chancesToScore = 1;
             return '/';
         }
-        ballsToScore = 2;
+        chancesToScore = 2;
         return 'X';
     }
 }

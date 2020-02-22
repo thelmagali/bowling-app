@@ -1,6 +1,7 @@
 package com.thelma.controller;
+
 public interface Game {
     boolean isComplete();
-    void saveBall(char pitfall) throws Exception;
+    void saveChance(char pinfalls) throws Exception;
     String toString();
 }

@@ -26,21 +26,21 @@ public class GameInputReaderFile implements GameInputReader {
                 String[] inputArray = scanner.nextLine().split("\t");
                 if(inputArray.length != 2) throw new Exception("Line must have 2 elements");
                 String name = inputArray[0];
-                String pitfalls = inputArray[1];
-                if(!pitfalls.matches("10|[0-9]|[fF]")) throw new Exception("Invalid value of pitfalls");
-                char chancePitfalls;
-                switch (pitfalls) {
+                String pinfalls = inputArray[1];
+                if(!pinfalls.matches("10|[0-9]|[fF]")) throw new Exception("Invalid value of pinfalls");
+                char chancePinfalls;
+                switch (pinfalls) {
                     case "10":
-                        chancePitfalls = 'X';
+                        chancePinfalls = 'X';
                         break;
                     case "f":
                     case "F":
-                        chancePitfalls = 'F';
+                        chancePinfalls = 'F';
                         break;
                     default:
-                        chancePitfalls = pitfalls.charAt(0);
+                        chancePinfalls = pinfalls.charAt(0);
                 }
-                return new Chance(name, chancePitfalls);
+                return new Chance(name, chancePinfalls);
             }
             scanner.close();
             return null;

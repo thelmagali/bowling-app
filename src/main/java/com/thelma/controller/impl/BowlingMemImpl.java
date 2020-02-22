@@ -1,7 +1,7 @@
 package com.thelma.controller.impl;
 
 import com.thelma.controller.Game;
-import com.thelma.controller.impl.common.BowlingCommonImpl;
+import com.thelma.controller.common.BowlingCommonImpl;
 import com.thelma.model.Chance;
 import com.thelma.model.PlayerGame;
 
@@ -35,7 +35,7 @@ public class BowlingMemImpl extends BowlingCommonImpl {
             if(game.isComplete())
                 throw new Exception("Invalid chance. This game is already complete");
         }
-        game.saveBall(chance.getPitfalls());
+        game.saveChance(chance.getPinfalls());
     }
 
     @Override

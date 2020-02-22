@@ -1,7 +1,7 @@
 package com.thelma.controller.impl;
 
 import com.thelma.controller.RegularFrame;
-import com.thelma.controller.impl.common.FrameCommon;
+import com.thelma.controller.common.FrameCommon;
 
 public class RegularFrameImpl extends FrameCommon implements RegularFrame {
 
@@ -18,13 +18,13 @@ public class RegularFrameImpl extends FrameCommon implements RegularFrame {
     @Override
     protected void handleStrike(){
         super.handleStrike();
-        balls[0] = '\0';
+        chances[0] = '\0';
         currentIdx++;
     }
 
     @Override
     protected char handleSpare(){
-        ballsToScore = 1;
+        chancesToScore = 1;
         return '/';
     }
 
