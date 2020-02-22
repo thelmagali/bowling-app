@@ -30,7 +30,7 @@ public abstract class FrameCommon {
 
     public int saveChance(char pinfalls) throws Exception {
         currentIdx++;
-        char formattedPitfall = pinfalls;
+        char formattedPinfall = pinfalls;
         int val = getVal(pinfalls);
         frameVal += val;
         if(currentIdx == 0){
@@ -40,12 +40,12 @@ public abstract class FrameCommon {
         } else{
             int maxPins = getMaxPins();
             if(val == maxPins){
-                formattedPitfall = handleSpare();
+                formattedPinfall = handleSpare();
             } else if (val > maxPins){
                 throw new Exception("Invalid second throw");
             }
         }
-        chances[currentIdx] = formattedPitfall;
+        chances[currentIdx] = formattedPinfall;
         return val;
     }
 
