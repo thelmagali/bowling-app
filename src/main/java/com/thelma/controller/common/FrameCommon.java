@@ -18,6 +18,8 @@ public abstract class FrameCommon {
 
     protected abstract int getMaxPins();
 
+    protected abstract char handleSpare();
+
     public int getFramePinfalls(){
         return frameVal;
     }
@@ -25,8 +27,6 @@ public abstract class FrameCommon {
     protected void handleStrike(){
         chancesToScore = 2;
     }
-
-    protected abstract char handleSpare();
 
     public int saveChance(char pinfalls) throws Exception {
         currentIdx++;
