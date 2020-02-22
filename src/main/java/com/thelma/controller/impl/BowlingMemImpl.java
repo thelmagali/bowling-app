@@ -26,7 +26,7 @@ public class BowlingMemImpl implements Bowling {
         while(true){
             Chance chance = inputReader.readChance();
             if(chance == null){
-                break;
+                return;
             }
             Game game = personGameMap.get(chance.getName());
             if(game == null){
