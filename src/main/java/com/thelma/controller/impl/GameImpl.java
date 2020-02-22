@@ -5,7 +5,6 @@ import com.thelma.controller.Game;
 import com.thelma.controller.LastFrame;
 import com.thelma.controller.RegularFrame;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
@@ -16,24 +15,13 @@ public class GameImpl implements Game {
     @Inject
     private Instance<LastFrame> lastFrameProvider;
 
-    private Frame[] frames; //array of 10 frames
-    private int currentFrameIdx; //index of the frame we are populating
-    private int lastSavedScore;
-    private int currentScore; //accumulated score in the game
-    private int nextFrameToScoreIdx; //the first frame whose score was not saved yet
-    private int chancesNotScored; //number of chances whose score was not saved yet
-    private boolean complete; //if game is complete or not
-
-    @PostConstruct
-    public void init() {
-        frames = new Frame[10];
-        chancesNotScored = 0;
-        nextFrameToScoreIdx = 0;
-        currentScore = 0;
-        complete = false;
-        currentFrameIdx = 0;
-        lastSavedScore = 0;
-    }
+    private Frame[] frames = new Frame[10]; //array of 10 frames
+    private int currentFrameIdx = 0; //index of the frame we are populating
+    private int lastSavedScore = 0;
+    private int currentScore = 0; //accumulated score in the game
+    private int nextFrameToScoreIdx = 0; //the first frame whose score was not saved yet
+    private int chancesNotScored = 0; //number of chances whose score was not saved yet
+    private boolean complete = false; //if game is complete or not
 
     public boolean isComplete(){
         return complete;
@@ -79,6 +67,12 @@ public class GameImpl implements Game {
         }
     }
 
+    /*
+        1. Adds the current score to lastSavedScore
+        2. Scores the nextFrameToScore with the value of lastSavedScore
+        3. Substracts the pinfalls of the just-scored frame from the current score
+        4. Increments nextFrameToScore
+     */
     private void calculateScores(){
         lastSavedScore += currentScore;
         frames[nextFrameToScoreIdx].score(lastSavedScore);
@@ -86,7 +80,6 @@ public class GameImpl implements Game {
         if(nextFrameToScoreIdx < currentFrameIdx){
             nextFrameToScoreIdx++;
         }
-
     }
 
     @Override
