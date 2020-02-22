@@ -1,8 +1,9 @@
 package com.thelma.controller.impl;
 
 import com.thelma.controller.Frame;
+import com.thelma.controller.impl.common.FrameCommon;
 
-public class RegularFrame extends Frame {
+public class RegularFrame extends FrameCommon implements Frame {
 
     @Override
     protected int getNumberOfChances() {

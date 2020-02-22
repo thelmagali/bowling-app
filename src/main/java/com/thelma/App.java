@@ -2,22 +2,36 @@ package com.thelma;
 
 import com.thelma.controller.Bowling;
 import com.thelma.controller.GameInputReader;
-import com.thelma.controller.impl.BowlingMemImpl;
 import com.thelma.controller.impl.GameInputReaderFile;
 
-public class App 
-{
+import javax.enterprise.inject.spi.CDI;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+import java.util.Arrays;
+import java.util.List;
+
+@Singleton
+public class App {
     public static void main(String[] args) {
+        CDI<Object> cdi = CDI.getCDIProvider().initialize();
+        App main = cdi.select(App.class).get();
+        main.run(Arrays.asList(args));
+    }
+
+    @Inject
+    private Bowling bowling;
+
+    private void run(List<String> args) {
         try {
-            if(args.length != 1){
+            if (args.size() != 1) {
                 throw new Exception("1 argument is necessary. The name of the input file.");
             }
-            GameInputReader reader = new GameInputReaderFile(args[0]);
-            Bowling bowling = new BowlingMemImpl(reader);
-            bowling.play();
+            GameInputReader reader = new GameInputReaderFile(args.get(0));
+            bowling.play(reader);
             bowling.printResult();
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
+
 }

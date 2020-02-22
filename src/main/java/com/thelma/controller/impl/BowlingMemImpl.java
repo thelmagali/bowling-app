@@ -1,21 +1,26 @@
 package com.thelma.controller.impl;
 
-import com.thelma.controller.Bowling;
 import com.thelma.controller.Game;
-import com.thelma.controller.GameInputReader;
+import com.thelma.controller.impl.common.BowlingCommonImpl;
 import com.thelma.model.Chance;
 import com.thelma.model.PlayerGame;
 
+import javax.annotation.PostConstruct;
+import javax.enterprise.inject.Instance;
+import javax.inject.Inject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class BowlingMemImpl extends Bowling {
+public class BowlingMemImpl extends BowlingCommonImpl {
     private Map<String, Game> personGameMap;
 
-    public BowlingMemImpl(GameInputReader reader){
-        super(reader);
+    @Inject
+    private Instance<Game> gameInstance;
+
+    @PostConstruct
+    void init(){
         personGameMap = new HashMap<>();
     }
 
@@ -24,7 +29,7 @@ public class BowlingMemImpl extends Bowling {
         Game game;
         game = personGameMap.get(chance.getName());
         if(game == null){
-            game = new GameImpl();
+            game = gameInstance.get();
             personGameMap.put(chance.getName(), game);
         } else{
             if(game.isComplete())
