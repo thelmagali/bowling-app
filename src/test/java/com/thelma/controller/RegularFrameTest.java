@@ -1,6 +1,6 @@
 package com.thelma.controller;
 
-import com.thelma.controller.impl.RegularFrame;
+import com.thelma.controller.impl.RegularFrameImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class RegularFrameTest {
 
     Frame getFrameInstance(){
-        return new RegularFrame();
+        return new RegularFrameImpl();
     }
 
     @Test

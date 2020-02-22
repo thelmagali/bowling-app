@@ -1,9 +1,9 @@
 package com.thelma.controller.impl;
 
-import com.thelma.controller.Frame;
+import com.thelma.controller.LastFrame;
 import com.thelma.controller.impl.common.FrameCommon;
 
-public class LastFrame extends FrameCommon implements Frame {
+public class LastFrameImpl extends FrameCommon implements LastFrame {
 
     @Override
     protected int getNumberOfChances() {

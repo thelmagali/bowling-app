@@ -2,14 +2,19 @@ package com.thelma.controller.impl;
 
 import com.thelma.controller.Frame;
 import com.thelma.controller.Game;
+import com.thelma.controller.LastFrame;
+import com.thelma.controller.RegularFrame;
 
-import javax.enterprise.inject.Any;
+import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 
 public class GameImpl implements Game {
-    @Inject @Any
-    private Instance<Frame> frameInstance;
+    @Inject
+    private Instance<RegularFrame> regFrameProvider;
+
+    @Inject
+    private Instance<LastFrame> lastFrameProvider;
 
     private Frame[] frames; //array of 10 frames
     private int currentFrameIdx; //index of the frame we are populating
@@ -19,8 +24,8 @@ public class GameImpl implements Game {
     private int ballsNotScored; //number of balls whose score was not saved yet
     private boolean complete; //if game is complete or not
 
-
-    public GameImpl() {
+    @PostConstruct
+    public void init() {
         frames = new Frame[10];
         ballsNotScored = 0;
         nextFrameToScoreIdx = 0;
@@ -38,21 +43,13 @@ public class GameImpl implements Game {
         return frames[nextFrameToScoreIdx].getBallsToScore();
     }
 
-    private RegularFrame getRegularFrame(){
-        return frameInstance.select(RegularFrame.class).get();
-    }
-
-    private LastFrame getLastFrame(){
-        return frameInstance.select(LastFrame.class).get();
-    }
-
     public void saveBall(char pitfall) throws Exception {
         Frame frame = frames[currentFrameIdx];
         if (frame == null){
-            if(currentFrameIdx == 9){
-                frame = getLastFrame();
+            if(currentFrameIdx != 9){
+                frame = regFrameProvider.get();
             } else {
-                frame = getRegularFrame();
+                frame = lastFrameProvider.get();
             }
             frames[currentFrameIdx] = frame;
         }

@@ -16,6 +16,7 @@ public class App {
         CDI<Object> cdi = CDI.getCDIProvider().initialize();
         App main = cdi.select(App.class).get();
         main.run(Arrays.asList(args));
+        cdi.close();
     }
 
     @Inject

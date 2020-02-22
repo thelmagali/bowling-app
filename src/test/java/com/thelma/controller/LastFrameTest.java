@@ -1,6 +1,6 @@
 package com.thelma.controller;
 
-import com.thelma.controller.impl.LastFrame;
+import com.thelma.controller.impl.LastFrameImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class LastFrameTest extends RegularFrameTest{
 
     Frame getFrameInstance(){
-        return new LastFrame();
+        return new LastFrameImpl();
     }
 
     @Override
