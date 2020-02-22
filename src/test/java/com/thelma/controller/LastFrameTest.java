@@ -1,6 +1,5 @@
 package com.thelma.controller;
 
-import com.thelma.controller.impl.LastFrameImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
