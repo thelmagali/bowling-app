@@ -1,48 +1,51 @@
 package com.thelma.controller.impl;
 
+import com.thelma.controller.Bowling;
 import com.thelma.controller.Game;
-import com.thelma.controller.common.BowlingCommonImpl;
+import com.thelma.controller.GameInputReader;
 import com.thelma.model.Chance;
-import com.thelma.model.PlayerGame;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-public class BowlingMemImpl extends BowlingCommonImpl {
+public class BowlingMemImpl implements Bowling {
     private Map<String, Game> personGameMap;
 
     @Inject
-    private Instance<Game> gameInstance;
+    private Instance<Game> gameProvider;
 
     @PostConstruct
     void init(){
         personGameMap = new HashMap<>();
     }
 
-    @Override
-    public void playChance(Chance chance) throws Exception {
-        Game game;
-        game = personGameMap.get(chance.getName());
-        if(game == null){
-            game = gameInstance.get();
-            personGameMap.put(chance.getName(), game);
-        } else{
-            if(game.isComplete())
-                throw new Exception("Invalid chance. This game is already complete");
+    public void play(GameInputReader inputReader) throws Exception{
+        while(true){
+            Chance chance = inputReader.readChance();
+            if(chance == null){
+                break;
+            }
+            Game game = personGameMap.get(chance.getName());
+            if(game == null){
+                game = gameProvider.get();
+                personGameMap.put(chance.getName(), game);
+            } else{
+                if(game.isComplete())
+                    throw new Exception("Invalid chance. This game is already complete");
+            }
+            game.saveChance(chance.getPinfalls());
         }
-        game.saveChance(chance.getPinfalls());
     }
 
-    @Override
-    public List<PlayerGame> getRecords() {
-        return personGameMap.entrySet().stream()
-                .map(x -> new PlayerGame(x.getKey(), x.getValue()))
-                .collect(Collectors.toList());
+    public void printResult(){
+        System.out.println("Frame\t\t1\t\t2\t\t3\t\t4\t\t5\t\t6\t\t7\t\t8\t\t9\t\t10");
+        personGameMap.forEach((key, value) -> {
+            System.out.println(key);
+            System.out.println(value);
+        });
     }
 
 }

@@ -10,7 +10,7 @@ public interface Bowling {
     void play(GameInputReader reader) throws Exception;
 
     /**
-     * Prints the result of this Bowling game
+     * Prints out the result of this Bowling game to the standard output
      */
     void printResult();
 }
