@@ -5,10 +5,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RegularFrameTest {
+import javax.inject.Inject;
 
+class RegularFrameTest extends BaseWeldTest{
+
+    @Inject
+    private RegularFrame regularFrame;
+
+    //This is to reuse some of these tests in LastFrameTest
     Frame getFrameInstance(){
-        return new RegularFrameImpl();
+        return regularFrame;
     }
 
     @Test

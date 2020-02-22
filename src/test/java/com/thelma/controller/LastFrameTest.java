@@ -5,10 +5,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.inject.Inject;
+
 class LastFrameTest extends RegularFrameTest{
 
+    @Inject
+    private LastFrame lastFrame;
+
     Frame getFrameInstance(){
-        return new LastFrameImpl();
+        return lastFrame;
     }
 
     @Override
