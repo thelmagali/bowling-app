@@ -50,9 +50,9 @@ public class GameImpl implements Game {
         Frame frame = frames[currentFrameIdx];
         if (frame == null){
             if(currentFrameIdx == 9){
-                frame = getRegularFrame();
-            } else {
                 frame = getLastFrame();
+            } else {
+                frame = getRegularFrame();
             }
             frames[currentFrameIdx] = frame;
         }
