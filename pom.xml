@@ -38,7 +38,6 @@
   </dependencies>
 
   <build>
-    <pluginManagement>
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -106,6 +105,5 @@
           </executions>
         </plugin>
       </plugins>
-    </pluginManagement>
   </build>
 </project>

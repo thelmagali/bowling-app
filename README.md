@@ -5,7 +5,7 @@ Java application that simulates a bowling game and prints out the final score.
 `mvn clean package`
 
 ## Run integration tests
-`mvn failsafe:integration-test`
+`mvn verify`
 
 ## Run
   <code>java -jar target/bowling-app.jar <name_of_input_file></code>
