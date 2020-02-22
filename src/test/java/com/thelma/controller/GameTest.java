@@ -1,15 +1,12 @@
 package com.thelma.controller;
 
-import org.jboss.weld.junit5.WeldJunit5Extension;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import javax.inject.Inject;
 
-@ExtendWith(WeldJunit5Extension.class)
-class GameTest {
+class GameTest extends BaseWeldTest {
 
     @Inject
     private Game game;
