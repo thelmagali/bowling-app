@@ -12,7 +12,7 @@ public class LastFrameImpl extends FrameCommon implements LastFrame {
 
     @Override
     public boolean isComplete() {
-        return (chancesToScore == 0) ? (currentIdx == 1) : (currentIdx == 2);
+        return (chancesToScore == 0) ? (currentChanceIdx == 1) : (currentChanceIdx == 2);
     }
 
     @Override
@@ -21,12 +21,17 @@ public class LastFrameImpl extends FrameCommon implements LastFrame {
     }
 
     @Override
-    protected char handleSpare(){
+    protected char handleSpareOrStrike(){
         if(getPreviousVal() != 10){
             chancesToScore = 1;
             return '/';
         }
         chancesToScore = 2;
         return 'X';
+    }
+
+    @Override
+    protected void handleStrike(){
+        chancesToScore = 2;
     }
 }

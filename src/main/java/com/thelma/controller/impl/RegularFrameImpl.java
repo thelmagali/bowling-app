@@ -17,20 +17,20 @@ public class RegularFrameImpl extends FrameCommon implements RegularFrame {
 
     @Override
     protected void handleStrike(){
-        super.handleStrike();
+        chancesToScore = 2;
         chances[0] = '\0';
-        currentIdx++;
+        currentChanceIdx++;
     }
 
     @Override
-    protected char handleSpare(){
+    protected char handleSpareOrStrike(){
         chancesToScore = 1;
         return '/';
     }
 
     @Override
     public boolean isComplete() {
-        return currentIdx == 1;
+        return currentChanceIdx == 1;
     }
 
 }

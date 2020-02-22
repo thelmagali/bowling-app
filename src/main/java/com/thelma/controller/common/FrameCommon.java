@@ -1,51 +1,64 @@
 package com.thelma.controller.common;
 
 public abstract class FrameCommon {
-    protected Character[] chances;
+    protected Character[] chances; //array of chances inside this frame (up to 2 for regular frames and up to 3 for last frame)
     private int score;
-    protected int chancesToScore;
-    protected int currentIdx;
-    private int frameVal;
+    protected int chancesToScore; //number of forward chances needed to score this game
+    protected int currentChanceIdx; //index of the current chance to be saved in this frame
+    private int totalPinfalls; //total pin falls in this frame
 
     public FrameCommon(){
         chances = new Character[getNumberOfChances()];
         score = 0;
         chancesToScore = 0;
-        currentIdx = -1;
+        currentChanceIdx = -1;
     }
 
+    /**
+     * Gets the maximum number of possible chances in this frame
+     * @return 2 for regular frames and 3 for last frame
+     */
     protected abstract int getNumberOfChances();
 
+    /**
+     * Gets the maximum possible number of pinfalls in the current chance
+     * @return the remaining number pins prior to the chance
+     */
     protected abstract int getMaxPins();
 
-    protected abstract char handleSpare();
+    /**
+     * Calculates whether this chance was a spare of a strike
+     * @return '/' for spare and 'X' for strike
+     */
+    protected abstract char handleSpareOrStrike();
+
+    /**
+     * Processes a strike. It depends on the implementation
+     */
+    protected abstract void handleStrike();
 
     public int getFramePinfalls(){
-        return frameVal;
-    }
-
-    protected void handleStrike(){
-        chancesToScore = 2;
+        return totalPinfalls;
     }
 
     public int saveChance(char pinfalls) throws Exception {
-        currentIdx++;
+        currentChanceIdx++;
         char formattedPinfall = pinfalls;
         int val = getVal(pinfalls);
-        frameVal += val;
-        if(currentIdx == 0){
+        totalPinfalls += val;
+        if(currentChanceIdx == 0){
             if(pinfalls == 'X'){
                 handleStrike();
             }
         } else{
             int maxPins = getMaxPins();
             if(val == maxPins){
-                formattedPinfall = handleSpare();
+                formattedPinfall = handleSpareOrStrike();
             } else if (val > maxPins){
                 throw new Exception("Invalid second throw");
             }
         }
-        chances[currentIdx] = formattedPinfall;
+        chances[currentChanceIdx] = formattedPinfall;
         return val;
     }
 
@@ -54,7 +67,7 @@ public abstract class FrameCommon {
     }
 
     protected int getPreviousVal() {
-        return getVal(chances[currentIdx - 1]);
+        return getVal(chances[currentChanceIdx - 1]);
     }
 
     public void score(int value) {
@@ -74,11 +87,11 @@ public abstract class FrameCommon {
 
     public String getChancesString(){
         StringBuilder sb = new StringBuilder();
-        for(Character ball: chances){
-            if(ball != null){
+        for(Character chance: chances){
+            if(chance != null){
                 sb.append("\t");
-                if(ball != '\0'){
-                    sb.append(ball);
+                if(chance != '\0'){
+                    sb.append(chance);
                 }
             }
         }
