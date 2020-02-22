@@ -19,7 +19,7 @@ public abstract class Frame {
 
     protected abstract int getMaxPins();
 
-    int getFrameVal(){
+    public int getFrameVal(){
         return frameVal;
     }
 
@@ -29,7 +29,7 @@ public abstract class Frame {
 
     protected abstract char handleSpare();
 
-    int saveBall(char pitfall) throws Exception {
+    public int saveBall(char pitfall) throws Exception {
         currentIdx++;
         char formattedPitfall = pitfall;
         int val = getVal(pitfall);
@@ -50,7 +50,7 @@ public abstract class Frame {
         return val;
     }
 
-    int getBallsToScore(){
+    public int getBallsToScore(){
         return ballsToScore;
     }
 
@@ -60,11 +60,11 @@ public abstract class Frame {
         return getVal(balls[currentIdx - 1]);
     }
 
-    void score(int value) {
+    public void score(int value) {
         score = value;
     }
 
-    int getScore(){
+    public int getScore(){
         return score;
     }
 
@@ -75,7 +75,7 @@ public abstract class Frame {
         return Character.getNumericValue(pitfalls);
     }
 
-    String getBallsString(){
+    public String getBallsString(){
         StringBuilder sb = new StringBuilder();
         for(Character ball: balls){
             if(ball != null){

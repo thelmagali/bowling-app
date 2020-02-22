@@ -24,7 +24,7 @@ public class BowlingMemImpl extends Bowling {
         Game game;
         game = personGameMap.get(chance.getName());
         if(game == null){
-            game = new Game();
+            game = new GameImpl();
             personGameMap.put(chance.getName(), game);
         } else{
             if(game.isComplete())
