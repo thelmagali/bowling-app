@@ -1,7 +1,6 @@
 package com.thelma.controller.common;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class FrameCommon {
     protected Character[] chances; //array of chances inside this frame (up to 2 for regular frames and up to 3 for last frame)
@@ -91,13 +90,9 @@ public abstract class FrameCommon {
     public String getChancesString(){
         return Arrays.stream(chances)
                 .filter(Objects::nonNull)
-                .map(Object::toString)
-                .reduce("", (acc, x) -> {
-                    acc = acc + "\t";
-                    if (!x.equals("\0")){
-                        return acc + x;
-                    }
-                    return acc;
-                });
+                .map(x -> new HashMap.SimpleEntry<>("\t", (x != '\0' ? x.toString() : "")))
+                .map(x -> new StringBuilder(x.getKey() + x.getValue()))
+                .reduce(new StringBuilder(), StringBuilder::append)
+                .toString();
     }
 }
