@@ -12,15 +12,16 @@ import java.util.List;
 
 @Singleton
 public class App {
+
+    @Inject
+    private Bowling bowling;
+
     public static void main(String[] args) {
         CDI<Object> cdi = CDI.getCDIProvider().initialize();
         App main = cdi.select(App.class).get();
         main.run(Arrays.asList(args));
         cdi.close();
     }
-
-    @Inject
-    private Bowling bowling;
 
     private void run(List<String> args) {
         try {
