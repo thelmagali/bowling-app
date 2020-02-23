@@ -5,7 +5,6 @@ import com.thelma.controller.Game;
 import com.thelma.controller.GameInputReader;
 import com.thelma.model.Chance;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
 import java.util.HashMap;
@@ -17,8 +16,7 @@ public class BowlingMemImpl implements Bowling {
     @Inject
     private Instance<Game> gameProvider;
 
-    @PostConstruct
-    void init(){
+    public BowlingMemImpl(){
         personGameMap = new HashMap<>();
     }
 
