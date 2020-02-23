@@ -1,5 +1,7 @@
 package com.thelma.controller.common;
 
+import javafx.util.Pair;
+
 import java.util.*;
 
 public abstract class FrameCommon {
@@ -90,7 +92,7 @@ public abstract class FrameCommon {
     public String getChancesString(){
         return Arrays.stream(chances)
                 .filter(Objects::nonNull)
-                .map(x -> new HashMap.SimpleEntry<>("\t", (x != '\0' ? x.toString() : "")))
+                .map(x -> new Pair<>("\t", (x != '\0' ? x.toString() : "")))
                 .map(x -> new StringBuilder(x.getKey() + x.getValue()))
                 .reduce(new StringBuilder(), StringBuilder::append)
                 .toString();
