@@ -89,12 +89,15 @@ public abstract class FrameCommon {
     }
 
     public String getChancesString(){
-        StringBuilder sb = new StringBuilder();
-        Arrays.stream(chances)
+        return Arrays.stream(chances)
                 .filter(Objects::nonNull)
-                .peek(x -> sb.append("\t"))
-                .filter(x -> x != '\0')
-                .forEach(sb::append);
-        return sb.toString();
+                .map(Object::toString)
+                .reduce("", (acc, x) -> {
+                    acc = acc + "\t";
+                    if (!x.equals("\0")){
+                        return acc + x;
+                    }
+                    return acc;
+                });
     }
 }
