@@ -1,5 +1,8 @@
 package com.thelma.controller.common;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public abstract class FrameCommon {
     protected Character[] chances; //array of chances inside this frame (up to 2 for regular frames and up to 3 for last frame)
     private int score;
@@ -87,14 +90,11 @@ public abstract class FrameCommon {
 
     public String getChancesString(){
         StringBuilder sb = new StringBuilder();
-        for(Character chance: chances){
-            if(chance != null){
-                sb.append("\t");
-                if(chance != '\0'){
-                    sb.append(chance);
-                }
-            }
-        }
+        Arrays.stream(chances)
+                .filter(Objects::nonNull)
+                .peek(x -> sb.append("\t"))
+                .filter(x -> x != '\0')
+                .forEach(sb::append);
         return sb.toString();
     }
 }

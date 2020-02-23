@@ -7,6 +7,7 @@ import com.thelma.controller.RegularFrame;
 
 import javax.enterprise.inject.Instance;
 import javax.inject.Inject;
+import java.util.Arrays;
 
 public class GameImpl implements Game {
     @Inject
@@ -86,12 +87,12 @@ public class GameImpl implements Game {
     public String toString() {
         StringBuilder chancesBuilder = new StringBuilder("Pinfalls");
         StringBuilder scoreBuilder = new StringBuilder("Score");
-        for(int i = 0; i <= currentFrameIdx; i++){
-            if(frames[i] != null){
-                chancesBuilder.append(frames[i].getChancesString());
-                scoreBuilder.append("\t\t").append(frames[i].getScore());
+        Arrays.stream(frames).forEach(x -> {
+            if(x != null){
+                chancesBuilder.append(x.getChancesString());
+                scoreBuilder.append("\t\t").append(x.getScore());
             }
-        }
+        });
         return chancesBuilder.append('\n').append(scoreBuilder).toString();
     }
 }
